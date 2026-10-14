@@ -1,5 +1,7 @@
 package ups.icc.pap.models;
 
+import java.util.function.Function;
+
 public class Lectura<T> {
     private String idSensor;
     private T valor;
@@ -18,8 +20,29 @@ public class Lectura<T> {
     public String getUnidad() {
         return unidad;
     }
+    public <R> Lectura<R> transformar(Function<T,R> conversor,String nuevaUnidad){
+        if (conversor == null){
+            throw new IllegalArgumentException("El conversor no puede ser nulo");
+            
+        }
+        R valorTransformado = conversor.apply(this.getValor());
+        if ( valorTransformado == null) {
+        throw new IllegalArgumentException("El resultado de aplicar el conversor no puede ser nulo.");
+        }
+        return new Lectura<>(this.getIdSensor(), valorTransformado, nuevaUnidad);
+        
 
-    
-
-    
+    }
 }
+    
+
+
+
+    
+
+    
+
+
+    
+
+    

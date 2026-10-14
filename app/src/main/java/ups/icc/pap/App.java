@@ -4,6 +4,8 @@
 package ups.icc.pap;
 
 
+import java.util.function.Function;
+
 import  ups.icc.pap.models.Lectura;
 
 public class App {
@@ -12,7 +14,9 @@ public class App {
     }
 
     public static void main(String[] args) {
-        runLectura();//PC1.1a
+        //runLectura();//PC1.1a
+        runTransformaciones();//PC1.1b
+        
     }
     private static void runLectura() {
 
@@ -28,5 +32,33 @@ public class App {
         System.out.println("Temperatura: " + temperatura.getValor());
         System.out.println("Ocupación: " + lectura.getValor());
     }
+    private static void runTransformaciones() {
     
+        Lectura<Double> temperatura = new Lectura<>("S01", 22.5, "°C");
+        Lectura<Integer> ocupacion = new Lectura<>("S02", 18, "personas");
+
+   
+        Lectura<Double> temperaturaF = temperatura.transformar(c -> c * 9.0 / 5.0 + 32, "°F");
+
+    
+        Lectura<String> ocupacionTexto = ocupacion.transformar(o -> o + " personas", "texto");
+    
+
+        System.out.println("Original: " + temperatura.getIdSensor() + " | " + temperatura.getValor() + " " + temperatura.getUnidad());
+        System.out.println("Transformada: " + temperaturaF.getIdSensor() + " | " + temperaturaF.getValor() + " " + temperaturaF.getUnidad());
+    
+        System.out.println("Original: " + ocupacion.getIdSensor() + " | " + ocupacion.getValor() + " " + ocupacion.getUnidad());
+        System.out.println("Transformada: " + ocupacionTexto.getIdSensor() + " | " + ocupacionTexto.getValor() + " | unidad: " + ocupacionTexto.getUnidad());
+        // Double -> Record
+        Lectura<Double> temperatura2 = new Lectura<>("S01", 22.5, "°C");
+    }
 }
+
+
+
+
+    
+        
+
+
+
