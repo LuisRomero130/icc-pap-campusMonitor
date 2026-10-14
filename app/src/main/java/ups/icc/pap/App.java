@@ -7,6 +7,7 @@ package ups.icc.pap;
 import java.util.function.Function;
 
 import  ups.icc.pap.models.Lectura;
+import ups.icc.pap.models.Reporte;
 
 public class App {
     public String getGreeting() {
@@ -49,9 +50,14 @@ public class App {
     
         System.out.println("Original: " + ocupacion.getIdSensor() + " | " + ocupacion.getValor() + " " + ocupacion.getUnidad());
         System.out.println("Transformada: " + ocupacionTexto.getIdSensor() + " | " + ocupacionTexto.getValor() + " | unidad: " + ocupacionTexto.getUnidad());
-        // Double -> Record
-        Lectura<Double> temperatura2 = new Lectura<>("S01", 22.5, "°C");
+        //Double  -> Reporte
+         System.out.println("---------------------------");
+
+         Lectura<Double> temperatura2 = new Lectura<>("S01", 22.5, "°C");
+         Lectura<Reporte> reporte = temperatura2.transformar(valor -> new Reporte(temperatura2.getIdSensor(), valor ,temperatura2.getUnidad()), "Reporte" );
+         System.out.println("Transformada a reporte: " + reporte.getValor());
     }
+         
 }
 
 
