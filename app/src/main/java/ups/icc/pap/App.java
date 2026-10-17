@@ -21,8 +21,8 @@ public class App {
     }
     private static void runLectura() {
 
-        Lectura<Double> temperatura = new Lectura<>(
-                "S01", 22.5, "°C");
+        Lectura<String> temperatura = new Lectura<>(
+                "S01", "22.5", "°C");
         Lectura<Integer> lectura = new Lectura<>("S02", 18, "Personas");
 
         System.out.println("Lecturas de CampusMonitor");
@@ -54,7 +54,7 @@ public class App {
          System.out.println("---------------------------");
 
          Lectura<Double> temperatura2 = new Lectura<>("S01", 22.5, "°C");
-         Lectura<Reporte> reporte = temperatura2.transformar(valor -> new Reporte(temperatura2.getIdSensor(), valor ,temperatura2.getUnidad()), "Reporte" );
+         Lectura<Reporte> reporte = temperatura2.transformar(v -> new Reporte(temperatura2.getIdSensor(), 234.4 ,temperatura2.getUnidad()), "Reporte" );
          System.out.println("Transformada a reporte: " + reporte.getValor());
     }
          

@@ -4,11 +4,11 @@ import java.util.function.Function;
 
 public class MetodosDemo {
 
-    public static void maint(String[] args){
+    public static void main(String[] args){
         Caja<String> Original= new Caja<String>("Algoritmo");
         //Mapear el valor String de la caja a un Integer
-        Integer longitud= Original.mapear(texto -> texto.length());
-        String etiqueta= Original.mapear(texto -> "Materia: " + texto);
+        Integer longitud= Original.mapear(t -> t.length());
+        String etiqueta= Original.mapear(t -> "Materia: " + t);
 
 
         System.out.println("Original" + Original.obtener());

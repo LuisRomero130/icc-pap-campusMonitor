@@ -25,7 +25,7 @@ public class Lectura<T> {
             throw new IllegalArgumentException("El conversor no puede ser nulo");
             
         }
-        R valorTransformado = conversor.apply(this.getValor());
+        R valorTransformado = conversor.apply(valor);
         if ( valorTransformado == null) {
         throw new IllegalArgumentException("El resultado de aplicar el conversor no puede ser nulo.");
         }
